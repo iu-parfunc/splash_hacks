@@ -38,9 +38,9 @@ clean:
 .c.o: 
 	gcc -c $(CFLAGS) $*.c
 
-.C.o: 
-	${M4} $(MACROS) $*.C > $*.c
-	gcc -c $(CFLAGS) $*.c
+# .C.o: 
+# 	${M4} $(MACROS) $*.C > $*.c
+# 	gcc -c $(CFLAGS) $*.c
 
 decs.h: decs.H
 jacobcalc.c: decs.h

@@ -39,9 +39,9 @@ clean:
 .c.o:
 	gcc -c $(CFLAGS) $*.c
 
-.C.o:
-	m4 $(MACROS) $*.C > $*.c
-	gcc -c $(CFLAGS) $*.c
+# .C.o:
+# 	m4 $(MACROS) $*.C > $*.c
+# 	gcc -c $(CFLAGS) $*.c
 
 matrix.h: matrix.H
 amal.c: matrix.h
