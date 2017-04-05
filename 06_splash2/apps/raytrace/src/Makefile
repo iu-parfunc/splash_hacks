@@ -9,12 +9,12 @@ CFLAGS =  -O2 -w
 
 x = *
 
-ifdef version
-  ifeq "$(version)" "IN_PARSEC"
-    PREFIX=${PARSECDIR}/ext/splash2/apps/${TARGET}/inst/${PARSECPLAT}
-    MACROS = ../../../../null_macros/c.m4.null.pthread
-  endif
-endif
+# ifdef version
+#   ifeq "$(version)" "IN_PARSEC"
+#     PREFIX=${PARSECDIR}/ext/splash2/apps/${TARGET}/inst/${PARSECPLAT}
+#     MACROS = ../../../../null_macros/c.m4.null.pthread
+#   endif
+# endif
 
 $(TARGET): $(OBJS)
 	gcc $(OBJS) $(CFLAGS) -o $(TARGET) $(LDFLAGS)
@@ -29,20 +29,20 @@ clean:
 	rm -rf *.c *.h *.o $(TARGET)
 
 
-M4 = -m4 -Uindex -Ulen
-RM = -rm -f
+M4 = m4 -Uindex -Ulen
+RM = rm -f
 
 .SUFFIXES:
 .SUFFIXES:      .o .c .C .h .H
 
 .H.h:
-	$(M4) ${MACROS} $*.H > $*.h
+	$(M4) ${MACROS} $< > $@
 
 .C.c:
-	$(M4) $(MACROS) $*.C > $*.c
+	$(M4) $(MACROS) $< > $@
 
 .c.o:
-	gcc -c $(CFLAGS) $*.c
+	gcc -c $(CFLAGS) $<
 
 # .C.o:
 # 	$(M4) $(MACROS) $*.C > $*.c
@@ -68,3 +68,45 @@ trace.c: trace.C rt.h
 tri.c:	tri.C rt.h
 workpool.c: workpool.C rt.h
 
+# TEMP:
+bbox.o: bbox.c
+cr.o: cr.c
+env.o: env.c
+fbuf.o: fbuf.c
+geo.o: geo.c
+huprn.o: huprn.c
+husetup.o: husetup.c
+hutv.o: hutv.c
+isect.o: isect.c
+main.o: main.c
+matrix.o: matrix.c
+memory.o: memory.c
+poly.o: poly.c
+raystack.o: raystack.c
+shade.o: shade.c
+sph.o: sph.c
+trace.o: trace.c
+tri.o: tri.c
+workpool.o: workpool.c
+
+# bbox.c: bbox.C
+# cr.c: cr.C
+# env.c: env.C
+# fbuf.c: fbuf.C
+# geo.c: geo.C
+# huprn.c: huprn.C
+# husetup.c: husetup.C
+# hutv.c: hutv.C
+# isect.c: isect.C
+# main.c: main.C
+# matrix.c: matrix.C
+# memory.c: memory.C
+# poly.c: poly.C
+# raystack.c: raystack.C
+# shade.c: shade.C
+# sph.c: sph.C
+# trace.c: trace.C
+# tri.c: tri.C
+# workpool.c: workpool.C
+
+rt.h: rt.H
