@@ -32,15 +32,24 @@ clean:
 .H.h:
 	${M4} ${MACROS} $*.H > $*.h
 
-#.C.c:
-#	${M4} $(MACROS) $*.C > $*.c
-#
-#.c.o:
-#	gcc -c $(CFLAGS) $*.c
+.C.c:
+	${M4} $(MACROS) $*.C > $*.c
+
+.c.o:
+	gcc -c $(CFLAGS) $*.c
 
 .C.o:
 	${M4} $(MACROS) $*.C > $*.c
 	gcc -c $(CFLAGS) $*.c
+
+interactions.h: interactions.H
+particle.h: particle.H
+partition_grid.h: partition_grid.H
+cost_zones.h: cost_zones.H
+construct_grid.h: construct_grid.H
+defs.h: defs.H
+box.h: box.H
+memory.h: memory.H
 
 defs.c: defs.h
 box.c: box.h
