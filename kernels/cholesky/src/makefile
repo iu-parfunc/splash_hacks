@@ -1,22 +1,22 @@
 TARGET = cholesky
 OBJS = amal.o assign.o bfac.o bksolve.o block2.o fo.o mf.o numLL.o \
-     parts.o seg.o solve.o tree.o util.o malloc.o 
+     parts.o seg.o solve.o tree.o util.o malloc.o
 
-CFLAGS = -O2 -w 
+CFLAGS = -O2 -w
 LDFLAGS = -lpthread -lm
 MACROS = ../../../null_macros/c.m4.null.pthread
 
 
 x = *
 
-ifdef version
-  ifeq "$(version)" "IN_PARSEC"
-    PREFIX=${PARSECDIR}/ext/splash2/kernels/${TARGET}/inst/${PARSECPLAT}
-    MACROS = ../../../../null_macros/c.m4.null.pthread
-  endif
-endif
+#ifdef version
+#  ifeq "$(version)" "IN_PARSEC"
+#    PREFIX=${PARSECDIR}/ext/splash2/kernels/${TARGET}/inst/${PARSECPLAT}
+#    MACROS = ../../../../null_macros/c.m4.null.pthread
+#  endif
+#endif
 
-$(TARGET): $(OBJS)
+cholesky: $(OBJS)
 	gcc $(OBJS) $(CFLAGS) -o $(TARGET) $(LDFLAGS)
 
 install:
