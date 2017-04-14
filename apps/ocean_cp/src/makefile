@@ -1,21 +1,21 @@
 TARGET = ocean_cp
 OBJS = main.o jacobcalc.o jacobcalc2.o laplacalc.o \
-	slave1.o slave2.o multi.o linkup.o subblock.o 
-CFLAGS = -O2 -w  
-LDFLAGS = -lpthread -lm 
+	slave1.o slave2.o multi.o linkup.o subblock.o
+CFLAGS = -O2 -w
+LDFLAGS = -lpthread -lm
 MACROS = ../../../null_macros/c.m4.null.pthread
 M4 = m4 -s -Ulen -Uindex
 
 x = *
 
-ifdef version
-  ifeq "$(version)" "IN_PARSEC"
-    PREFIX=${PARSECDIR}/ext/splash2/apps/${TARGET}/inst/${PARSECPLAT}
-    MACROS = ../../../../null_macros/c.m4.null.pthread
-  endif
-endif
+#ifdef version
+#  ifeq "$(version)" "IN_PARSEC"
+#    PREFIX=${PARSECDIR}/ext/splash2/apps/${TARGET}/inst/${PARSECPLAT}
+#    MACROS = ../../../../null_macros/c.m4.null.pthread
+#  endif
+#endif
 
-$(TARGET): $(OBJS)
+ocean_cp: $(OBJS)
 	gcc $(OBJS) -o $(TARGET) $(LDFLAGS)
 
 install:
@@ -29,16 +29,16 @@ clean:
 .SUFFIXES:
 .SUFFIXES:	.o .c .C .h .H
 
-.H.h: 
+.H.h:
 	${M4} ${MACROS} $*.H > $*.h
 
-.C.c: 
+.C.c:
 	${M4} $(MACROS) $*.C > $*.c
 
-.c.o: 
+.c.o:
 	gcc -c $(CFLAGS) $*.c
 
-# .C.o: 
+# .C.o:
 # 	${M4} $(MACROS) $*.C > $*.c
 # 	gcc -c $(CFLAGS) $*.c
 

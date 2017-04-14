@@ -1,21 +1,21 @@
 TARGET = fmm
 OBJS = defs.o memory.o particle.o box.o partition_grid.o \
-       cost_zones.o construct_grid.o interactions.o fmm.o 
-CFLAGS = -O2 -w  
+       cost_zones.o construct_grid.o interactions.o fmm.o
+CFLAGS = -O2 -w
 LDFLAGS = -lpthread -lm
 MACROS = ../../../null_macros/c.m4.null.pthread
 M4 = m4 -s -Ulen -Uindex
 
 x = *
 
-ifdef version
-  ifeq "$(version)" "IN_PARSEC"
-    PREFIX=${PARSECDIR}/ext/splash2/apps/${TARGET}/inst/${PARSECPLAT}
-    MACROS = ../../../../null_macros/c.m4.null.pthread
-  endif
-endif
+#ifdef version
+#  ifeq "$(version)" "IN_PARSEC"
+#    PREFIX=${PARSECDIR}/ext/splash2/apps/${TARGET}/inst/${PARSECPLAT}
+#    MACROS = ../../../../null_macros/c.m4.null.pthread
+#  endif
+#endif
 
-$(TARGET): $(OBJS)
+fmm: $(OBJS)
 	gcc $(OBJS) $(CFLAGS) -o $(TARGET) $(LDFLAGS)
 
 install:
@@ -32,11 +32,11 @@ clean:
 .H.h:
 	${M4} ${MACROS} $*.H > $*.h
 
-.C.c:
-	${M4} $(MACROS) $*.C > $*.c
-
-.c.o:
-	gcc -c $(CFLAGS) $*.c
+#.C.c:
+#	${M4} $(MACROS) $*.C > $*.c
+#
+#.c.o:
+#	gcc -c $(CFLAGS) $*.c
 
 .C.o:
 	${M4} $(MACROS) $*.C > $*.c

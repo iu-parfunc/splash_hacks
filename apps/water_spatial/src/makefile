@@ -2,18 +2,18 @@ TARGET = water_spatial
 
 OBJS = water.o mdmain.o syscons.o kineti.o bndry.o cnstnt.o initia.o \
        interf.o intraf.o cshift.o poteng.o predcor.o
-CFLAGS = -O2 -w 
+CFLAGS = -O2 -w
 LDFLAGS = -lm -lpthread
 MACROS = ../../../null_macros/c.m4.null.pthread
 
 x = *
 
-ifdef version
-  ifeq "$(version)" "IN_PARSEC"
-    PREFIX=${PARSECDIR}/ext/splash2/apps/${TARGET}/inst/${PARSECPLAT}
-    MACROS = ../../../../null_macros/c.m4.null.pthread
-  endif
-endif
+#ifdef version
+#  ifeq "$(version)" "IN_PARSEC"
+#    PREFIX=${PARSECDIR}/ext/splash2/apps/${TARGET}/inst/${PARSECPLAT}
+#    MACROS = ../../../../null_macros/c.m4.null.pthread
+#  endif
+#endif
 
 
 .SUFFIXES:
@@ -25,11 +25,11 @@ endif
 	m4 $(MACROS) $*.C > $*.c
 .c.o:
 	gcc -c $(CFLAGS) $*.c
-.C.o:
-	m4 $(MACROS) $*.C > $*.c
-	gcc -c $(CFLAGS) $*.c
+#.C.o:
+#	m4 $(MACROS) $*.C > $*.c
+#	gcc -c $(CFLAGS) $*.c
 
-$(TARGET): $(OBJS)
+water_spatial: $(OBJS)
 	gcc $(OBJS) $(CFLAGS) -o $(TARGET) $(LDFLAGS)
 
 install:

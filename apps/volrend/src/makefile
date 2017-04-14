@@ -9,12 +9,12 @@ mylibtiff = libtiff.a
 
 x = *
 
-ifdef version
-  ifeq "$(version)" "IN_PARSEC"
-    PREFIX=${PARSECDIR}/ext/splash2/apps/${TARGET}/inst/${PARSECPLAT}
-    MACROS = ../../../../null_macros/c.m4.null.pthread
-  endif
-endif
+#ifdef version
+#  ifeq "$(version)" "IN_PARSEC"
+#    PREFIX=${PARSECDIR}/ext/splash2/apps/${TARGET}/inst/${PARSECPLAT}
+#    MACROS = ../../../../null_macros/c.m4.null.pthread
+#  endif
+#endif
 
 all: $(mylibtiff) $(TARGET)
 	@echo Done
@@ -22,7 +22,7 @@ all: $(mylibtiff) $(TARGET)
 $(mylibtiff):
 	make -C libtiff
 
-$(TARGET): $(OBJS)  
+volrend: $(OBJS)
 	gcc $(OBJS) $(CFLAGS) -o $(TARGET) $(LDFLAGS)
 
 
@@ -38,18 +38,18 @@ clean:
 .SUFFIXES:
 .SUFFIXES:	.o .c .C .h .H
 
-.H.h:	
+.H.h:
 	m4 ${MACROS} $*.H > $*.h
 
-.C.c:	
+.C.c:
 	m4 $(MACROS) $*.C > $*.c
 
-.c.o:	
+.c.o:
 	gcc -c $(CFLAGS) $*.c
 
-.C.o:	
-	m4 $(MACROS) $*.C > $*.c
-	gcc -c $(CFLAGS) $*.c
+#.C.o:
+#	m4 $(MACROS) $*.C > $*.c
+#	gcc -c $(CFLAGS) $*.c
 
 main.c:	main.C incl.h anl.h
 file.c:	file.C incl.h

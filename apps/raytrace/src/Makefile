@@ -5,7 +5,7 @@ OBJS = bbox.o cr.o env.o fbuf.o geo.o huprn.o husetup.o hutv.o isect.o \
 	tri.o workpool.o
 LDFLAGS = -lpthread -lm
 MACROS = ../../../null_macros/c.m4.null.pthread
-CFLAGS =  -O2 -w 
+CFLAGS =  -O2 -w
 
 x = *
 
@@ -16,7 +16,7 @@ x = *
 #   endif
 # endif
 
-$(TARGET): $(OBJS)
+raytrace: $(OBJS)
 	gcc $(OBJS) $(CFLAGS) -o $(TARGET) $(LDFLAGS)
 
 
