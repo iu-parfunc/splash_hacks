@@ -40,6 +40,18 @@ install:
 clean:
 	rm -rf *.c *.h *.o $(TARGET)
 
+mddata.h: mddata.H
+fileio.h: fileio.H
+global.h: global.H
+parameters.h: parameters.H
+mdvar.h: mdvar.H
+frcnst.h: frcnst.H
+wwpot.h: wwpot.H
+split.h: split.H
+randno.h: randno.H
+cnst.h: cnst.H
+water.h: water.H
+
 cnstnt.c: cnstnt.C water.h wwpot.h cnst.h frcnst.h fileio.h parameters.h
 water.c: water.C parameters.h mdvar.h water.h wwpot.h cnst.h mddata.h \
          fileio.h frcnst.h randno.h global.h split.h
