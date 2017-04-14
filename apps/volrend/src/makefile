@@ -51,6 +51,15 @@ clean:
 #	m4 $(MACROS) $*.C > $*.c
 #	gcc -c $(CFLAGS) $*.c
 
+my_types.h: my_types.H
+const.h: const.H
+incl.h: incl.H
+anl.h: anl.H
+global.h: global.H
+macros.h: macros.H
+user_options.h: user_options.H
+address.h: address.H
+
 main.c:	main.C incl.h anl.h
 file.c:	file.C incl.h
 option.c: option.C incl.h
