@@ -11,10 +11,10 @@ GLIB    = glib.a
 LIBFPE = -lfpe
 
 MACROS = ../../../null_macros/c.m4.null.pthread
-CCOPTS = -I -float -I/usr/include $(CFLAGS)
 LDFLAGS = -g -w -lpthread -lm
-CFLAGS = $(CINCLUDE) -g
 CINCLUDE = -I$(GLIBDIR) -I./glibps -I/usr/local/include
+CFLAGS = $(CINCLUDE) -g
+CCOPTS = -I -float -I/usr/include $(CFLAGS)
 
 LOADLIBES =  $(GLIBDIR)/$(GLIB) glibps/glibps.a
 
@@ -28,8 +28,8 @@ x = *
 #endif
 
 radiosity: $(OBJS)
-	make -C glibdumb
-	make -C glibps
+	$(MAKE) -C glibdumb
+	$(MAKE) -C glibps
 	gcc $(CFLAGS) $(OBJS) $(LOADLIBES) -o $(TARGET) $(LDFLAGS)
 
 install:
@@ -38,8 +38,8 @@ install:
 	cp -f run.sh $(PREFIX)/bin/run.sh
 
 clean:
-	make -C glibdumb clean
-	make -C glibps	clean
+	$(MAKE) -C glibdumb clean
+	$(MAKE) -C glibps	clean
 	rm -rf *.c *.h *.o $(TARGET)
 
 .SUFFIXES:
@@ -59,6 +59,12 @@ clean:
 #	gcc -c $(CFLAGS) $*.c
 
 $(HS): $(HHS)
+
+task.h: task.H
+patch.h: patch.H
+radiosity.h: radiosity.H
+parallel.h: parallel.H
+model.h: model.H
 
 radiosity.h: patch.h model.h parallel.h task.h
 rad_main.c: rad_main.C $(HS)

@@ -1,4 +1,4 @@
-# 
+#
 #  Device independent graphics package GLIB.
 #  NULL graphic device version
 #
@@ -6,7 +6,7 @@
 OBJS   = glib.o
 TARGET = glib.a
 PANELDIR = /usr/local/panel
-CCOPT  = -O 
+CCOPT  = -O
 INCLUDE_DIRS = -I${PANELDIR}/include
 CFLAGS = $(CCOPT) $(CCDEFS) $(INCLUDE_DIRS)
 LDFLAGS =  -L${PANELDIR}/lib -lgl -lpanel -lm
